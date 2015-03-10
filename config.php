@@ -100,4 +100,7 @@ define('ISSUER_FOR_ASYNC_CONFIRMATION', 'https://sb-hub.mobage.jp');
 define('PDO_DSN',      'mysql:dbname=mobage_jssdk_sample;host=localhost');
 define('PDO_USERNAME', 'YOUR_USERNAME');
 define('PDO_PASSWORD', 'YOUR_PASSWORD');
+
+define('CHAT_END_POINT',   'https://sb-app.mobage.jp/social/api/restful/v2/chat');
+define('PEOPLE_END_POINT', 'https://sb-app.mobage.jp/social/api/restful/v2/people');
 ?>

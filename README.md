@@ -15,6 +15,7 @@ Mobage JS SDK を利用した様々な処理をイメージしやすいように
 このサンプルは以下のような処理に関するサンプルで構成されています。
 * ショートカットアイコン作成支援機能
 * 友達招待機能
+* Chat Widget機能
 
 ### 関連ドキュメント
 こちらではサンプルを動かす簡単な手順をまとめていますが、Mobage JS SDK の詳細については「[Mobage JS SDK 開発ドキュメント](https://docs.mobage.com/display/JPJSSDK/Guide_for_Engineers)」を参照してください。
@@ -135,3 +136,25 @@ mobage-jssdk-sample-others/JWT/JWT.php
  * サンプルコードでは、mobage-jssdk-others/log/accepted_invitation.log にて通知ログを出力しています
  * 通知ログを 'tail -f accepted_invitation.log' などのコマンドにより監視し、通知を確認します。
 上記手順により、友達招待の送信通知、成立通知の受け取りまで確認できました。
+
+### Chat Widget 機能を確認する
+#### デベロッパーサイトでチャット機能を有効にする
+以下に従って、デベロッパーサイトでゲームチャットへの導線を有効化します。
+* ダッシュボードの左メニューより「アプリケーション」>「アプリケーション一覧」画面を開きます。
+* 「アプリケーション一覧」から開発しているアプリケーションを選択します。
+* ダッシュボードの左メニューより「SPWeb設定」を選択します。
+* 画面下部の「チャット」のセクションにて、「ゲームチャットへの導線 (Sandbox用)」で「オン」ボタンをクリックして有効化します。
+* 「プロフィール設定情報」というセクションで、「プロフィールURLの編集」を選択します。
+ * このサンプルコードでは「http://{yourdomain}/mobage-jssdk-sample-others/chat/profile.php?uid={user_id}」と登録します。
+ * こちら設定した場合は、ゲーム内のチャット画面から各ユーザのアイコンをタップした際に、指定したURLに遷移します。
+ * 何も設定しない場合は、アイコンをタップしてもどこにも遷移しません。
+ * ClientOriginURI に登録していないドメインでプロフィールURLを設定する事は出来ません
+
+#### サンプルコードを配置して実行する
+サンプルコードを実機から確認できる環境に配置し、以下の手順で確認します。
+* http://{yourdomain}/mobage-jssdk-sample-others/chat/chat_list.php にアクセスします。
+* まだチャンネルが作成されていないため、チャットのチャンネルリストは無く、「Create New Chat Channel」が表示されます
+* 「Create New Chat Channel」をタップすると、チャット画面が表示され、ゲームから最初のメッセージが表示されています
+* User1 から適当なメッセージを投稿します
+* User1 と友達である User2 で http://{yourdomain}/mobage-jssdk-sample-others/chat/chat_list.php を表示すると、未読メッセージありのチャンネルリストが表示されます。
+* User2 でもメッセージを投稿してみて、 User1 側にてメッセージが表示される事を確認します。
