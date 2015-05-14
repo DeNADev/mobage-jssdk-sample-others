@@ -23,7 +23,6 @@
  */
  
 require_once('../config.php');
-require_once('../common.php');
 require_once('../JWT/JWT.php');
 
 define('SENT_INVITATION_LOG_PATH', '../log/sent_invitation.log');
@@ -43,8 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // decode JSON Web Token
     try {
-        checkSignatureAlgorithm($jwt_body);
-        $jwt_claims = JWT::decode($jwt_body, PUBLIC_KEY);
+        $jwt_claims = JWT::decode($jwt_body, PUBLIC_KEY, array('RS256'));
     } catch (Exception $e) {
         error_log('jwt_decode failed because ' . $e . "\n", 3, ERROR_LOG_PATH);
         render_error_json();
